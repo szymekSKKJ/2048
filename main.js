@@ -132,6 +132,10 @@ const gameOver = () => {
 	const scoreElementInGameOver = document.querySelector('#game-over h1');
 	const scoreElement = document.querySelector('#header h1');
 	const cells = document.querySelectorAll('#board .cell');
+	const bestScore = document.querySelector('#header #best-score');
+	const localStorageBestScore = localStorage.getItem('bestScore') === null ? 0 : localStorage.getItem('bestScore');
+
+	bestScore.innerHTML = `Best: ${localStorageBestScore}`;
 
 	scoreElementInGameOver.innerHTML = `${scoreElement.innerHTML} pts!`;
 
@@ -192,9 +196,13 @@ const gameOver = () => {
 		startAgainButton.addEventListener(
 			'click',
 			() => {
+				localStorage.setItem('bestScore', scoreElement.innerHTML);
+				bestScore.innerHTML = `Best: ${scoreElement.innerHTML}`;
 				gameOverElement.style.opacity = '0';
 				gameOverElement.style.pointerEvents = 'none';
-				scoreElement.innerHTML = '0';
+				setTimeout(() => {
+					scoreElement.innerHTML = '0';
+				}, 10);
 				isKeyPressed = true;
 
 				cells.forEach((cell) => {
@@ -530,4 +538,11 @@ window.addEventListener('touchend', (event) => {
 	firstTouchX = 0;
 	firstTouchY = 0;
 	isTouchDone = false;
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+	const bestScore = document.querySelector('#header #best-score');
+	const localStorageBestScore = localStorage.getItem('bestScore') === null ? 0 : localStorage.getItem('bestScore');
+
+	bestScore.innerHTML = `Best: ${localStorageBestScore}`;
 });

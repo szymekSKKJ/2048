@@ -38,9 +38,13 @@ body #header #wrapper h1 {
   font-size: 50px;
 }
 body #header #wrapper h2 {
-  margin-top: -12px;
+  margin-top: 0px;
   font-weight: 400;
   font-size: 20px;
+  background-color: #2c333a;
+  padding: 2px 24px 2px 24px;
+  border-radius: 400px;
+  border: solid 2px #21262c;
 }
 body #header #buttons {
   width: auto;
