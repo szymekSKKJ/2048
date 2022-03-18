@@ -134,13 +134,14 @@ const gameOver = () => {
 	const cells = document.querySelectorAll('#board .cell');
 	const bestScore = document.querySelector('#header #best-score');
 	const localStorageBestScore = localStorage.getItem('bestScore') === null ? 0 : localStorage.getItem('bestScore');
-
+	scoreElementInGameOver.style.whiteSpace = 'nowrap';
 	bestScore.innerHTML = `Best: ${localStorageBestScore}`;
 
 	scoreElementInGameOver.innerHTML = `${scoreElement.innerHTML} pts!`;
 
 	if (isCheated) {
 		scoreElementInGameOver.innerHTML = `That's sad what have you done...`;
+		scoreElementInGameOver.style.whiteSpace = 'unset';
 		if (startAgainButton) {
 			startAgainButton.remove();
 		}
