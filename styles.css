@@ -157,7 +157,7 @@ body #board .cell .inside-cell {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: min(7vw, 60px);
+  font-size: min(8vw, 60px);
   transition: background-color 0ms, transform 250ms, opacity 125ms;
   z-index: 1000000;
 }
