@@ -171,8 +171,6 @@ body #game-over {
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
   transition: opacity 1000ms;
-  opacity: 0;
-  pointer-events: none;
 }
 body #game-over p {
   font-size: 50px;
@@ -192,6 +190,13 @@ body #game-over h1 {
   text-align: center;
   margin-top: 50px;
   margin-bottom: 50px;
+  white-space: nowrap;
+}
+@media screen and (max-width: 425px) {
+  body #game-over h1 {
+    font-size: 15vw;
+    padding: 0px 24px 0px 24px;
+  }
 }
 body #game-over button {
   width: auto;
