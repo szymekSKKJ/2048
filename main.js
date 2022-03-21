@@ -248,6 +248,7 @@ const initMove = (move) => {
 		row.forEach((cell, index, array) => {
 			const cellValue = cell.querySelector('#value');
 			const cellInsideCell = cell.querySelector('.inside-cell');
+			const marginOfCell = parseInt(window.getComputedStyle(cell).getPropertyValue('margin'));
 			cellInsideCell.style.transition = 'transform 250ms, opacity 250ms, background-color 125ms';
 
 			if (cellValue.innerHTML !== '') {
@@ -285,8 +286,8 @@ const initMove = (move) => {
 							fakeCell.innerHTML = cell1.innerHTML;
 							fakeCell.style.position = 'fixed';
 							fakeCell.style.pointerEvents = 'none';
-							fakeCell.style.top = `${top1 - topBorad - 5}px`; //5 means margin of element
-							fakeCell.style.left = `${left1 - leftBoard - 5}px`;
+							fakeCell.style.top = `${top1 - topBorad - marginOfCell}px`; //5 means margin of element
+							fakeCell.style.left = `${left1 - leftBoard - marginOfCell}px`;
 							fakeCell.style.width = `${width}px`;
 							fakeCell.style.height = `${height}px`;
 
@@ -294,13 +295,13 @@ const initMove = (move) => {
 								.animate(
 									[
 										{
-											top: `${top1 - topBorad - 5}px`,
-											left: `${left1 - leftBoard - 5}px`,
+											top: `${top1 - topBorad - marginOfCell}px`,
+											left: `${left1 - leftBoard - marginOfCell}px`,
 											opacity: '1',
 										},
 										{
-											top: `${top - topBorad - 5}px`,
-											left: `${left - leftBoard - 5}px`,
+											top: `${top - topBorad - marginOfCell}px`,
+											left: `${left - leftBoard - marginOfCell}px`,
 											opacity: '0',
 										},
 									],
@@ -332,6 +333,7 @@ const initMove = (move) => {
 		row.forEach((cell, index, array) => {
 			const cellValue = cell.querySelector('#value');
 			const cellInsideCell = cell.querySelector('.inside-cell');
+			const marginOfCell = parseInt(window.getComputedStyle(cell).getPropertyValue('margin'));
 
 			if (cellValue.innerHTML === '') {
 				let isFoundCell = false;
@@ -357,7 +359,7 @@ const initMove = (move) => {
 							if (move === 'right') {
 								//10 means margin of element
 								cellInsideCell.style.transform = `translate(${
-									(-width + -10) * (index1 - index)
+									(-width + -marginOfCell * 2) * (index1 - index)
 								}px ,0px)`;
 
 								setTimeout(() => {
@@ -368,7 +370,9 @@ const initMove = (move) => {
 							}
 
 							if (move === 'left') {
-								cellInsideCell.style.transform = `translate(${(width + 10) * (index1 - index)}px ,0px)`;
+								cellInsideCell.style.transform = `translate(${
+									(width + marginOfCell * 2) * (index1 - index)
+								}px ,0px)`;
 
 								setTimeout(() => {
 									cellInsideCell.style.transition =
@@ -378,7 +382,9 @@ const initMove = (move) => {
 							}
 
 							if (move === 'up') {
-								cellInsideCell.style.transform = `translate(0px ,${(width + 10) * (index1 - index)}px)`;
+								cellInsideCell.style.transform = `translate(0px ,${
+									(width + marginOfCell * 2) * (index1 - index)
+								}px)`;
 
 								setTimeout(() => {
 									cellInsideCell.style.transition =
@@ -389,7 +395,7 @@ const initMove = (move) => {
 
 							if (move === 'down') {
 								cellInsideCell.style.transform = `translate(0px ,${
-									(-width + -10) * (index1 - index)
+									(-width + -marginOfCell * 2) * (index1 - index)
 								}px)`;
 
 								setTimeout(() => {

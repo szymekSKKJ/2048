@@ -25,7 +25,7 @@ body #header {
   justify-content: center;
 }
 body #header #wrapper {
-  width: auto;
+  width: 100%;
   height: auto;
   background-color: transparent;
   display: flex;
@@ -38,12 +38,13 @@ body #header #wrapper h1 {
   font-size: 50px;
 }
 body #header #wrapper h2 {
+  width: 100%;
   margin-top: 0px;
   font-weight: 400;
   font-size: 20px;
   background-color: #2c333a;
   padding: 2px 24px 2px 24px;
-  border-radius: 400px;
+  border-radius: 4px;
   border: solid 2px #21262c;
 }
 body #header #buttons {
