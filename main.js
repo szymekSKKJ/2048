@@ -240,8 +240,6 @@ const gameOver = () => {
 	}
 };
 
-gameOver();
-
 let myTimeout;
 
 const initMove = (move) => {
