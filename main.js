@@ -128,7 +128,9 @@ let isAnimationEnd = true;
 
 const gameOver = () => {
 	const gameOverElement = document.querySelector('#game-over');
-	const startAgainButton = document.querySelector('#game-over button');
+	const startAgainButton = document.querySelectorAll('#game-over button')[0];
+	const showBoardButton = document.querySelectorAll('#game-over button')[1];
+	const startAgainButtonHidden = document.querySelector('#hidden-play-again-button');
 	const scoreElementInGameOver = document.querySelector('#game-over h1');
 	const scoreElement = document.querySelector('#header h1');
 	const cells = document.querySelectorAll('#board .cell');
@@ -179,6 +181,18 @@ const gameOver = () => {
 						{ once: true }
 					);
 
+					showBoardButton.addEventListener(
+						'click',
+						() => {
+							myAnimation.cancel();
+							gameOverElement.style.opacity = '0';
+							gameOverElement.style.pointerEvents = 'none';
+							startAgainButtonHidden.style.opacity = '1';
+							startAgainButtonHidden.style.pointerEvents = 'unset';
+						},
+						{ once: true }
+					);
+
 					if (index === array.length - 1) {
 						isAnimationEnd = true;
 					}
@@ -194,35 +208,39 @@ const gameOver = () => {
 	isAnimationEnd = false;
 
 	if (startAgainButton) {
-		startAgainButton.addEventListener(
-			'click',
-			() => {
-				localStorage.setItem('bestScore', scoreElement.innerHTML);
-				bestScore.innerHTML = `Best: ${scoreElement.innerHTML}`;
-				gameOverElement.style.opacity = '0';
-				gameOverElement.style.pointerEvents = 'none';
-				setTimeout(() => {
-					scoreElement.innerHTML = '0';
-				}, 10);
-				isKeyPressed = true;
+		const startAgain = () => {
+			startAgainButtonHidden.style.opacity = '0';
+			startAgainButtonHidden.style.pointerEvents = 'none';
+			localStorage.setItem('bestScore', scoreElement.innerHTML);
+			bestScore.innerHTML = `Best: ${scoreElement.innerHTML}`;
+			gameOverElement.style.opacity = '0';
+			gameOverElement.style.pointerEvents = 'none';
+			setTimeout(() => {
+				scoreElement.innerHTML = '0';
+			}, 10);
+			isKeyPressed = true;
 
-				cells.forEach((cell) => {
-					const cellValue = cell.querySelector('#value');
-					cellValue.innerHTML = '';
-					cell.querySelector('.inside-cell').className = 'inside-cell';
-				});
+			cells.forEach((cell) => {
+				const cellValue = cell.querySelector('#value');
+				cellValue.innerHTML = '';
+				cell.querySelector('.inside-cell').className = 'inside-cell';
+			});
 
-				setTimeout(() => {
-					isKeyPressed = false;
-				}, 100);
+			setTimeout(() => {
+				isKeyPressed = false;
+			}, 100);
 
-				addCellValueOf2();
-				addCellValueOf2();
-			},
-			{ once: true }
-		);
+			addCellValueOf2();
+			addCellValueOf2();
+		};
+
+		startAgainButton.addEventListener('click', () => startAgain(), { once: true });
+
+		startAgainButtonHidden.addEventListener('click', () => startAgain(), { once: true });
 	}
 };
+
+gameOver();
 
 let myTimeout;
 

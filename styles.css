@@ -246,7 +246,21 @@ body #game-over h1 {
     padding: 0px 24px 0px 24px;
   }
 }
-body #game-over button {
+body #game-over #wrapper {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+@media screen and (max-width: 768px) {
+  body #game-over #wrapper {
+    flex-direction: column;
+  }
+}
+body #game-over #wrapper button {
   width: auto;
   height: auto;
   display: flex;
@@ -261,11 +275,47 @@ body #game-over button {
   justify-content: center;
   align-items: center;
   border-radius: 12px;
-  margin-top: 100px;
   transition: all 250ms;
   outline: unset;
+  margin: 0px 10px 0px 10px;
 }
-body #game-over button:hover {
+body #game-over #wrapper button:hover {
   transform: translateY(-6px);
+  color: white;
+}
+@media screen and (max-width: 768px) {
+  body #game-over #wrapper button {
+    width: 100%;
+    margin: 10px;
+  }
+}
+body #hidden-play-again-button {
+  width: auto;
+  height: auto;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: unset;
+  font-size: 24px;
+  padding: 5px 36px 5px 36px;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  transition: all 250ms;
+  outline: unset;
+  margin: 0px 10px 0px 10px;
+  position: fixed;
+  bottom: 125px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+}
+body #hidden-play-again-button:hover {
+  transform: translate(-50%, -6px);
   color: white;
 }/*# sourceMappingURL=styles.css.map */
